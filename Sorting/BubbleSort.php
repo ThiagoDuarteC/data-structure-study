@@ -1,6 +1,6 @@
 <?php
 
-function bubble_sort(array &$array) {
+function bubble_sort(array &$array): void {
     for ($i = 0; $i < count($array); $i++) {
         $changed = false;
         for ($j = 0; $j < count($array) - $i - 1; $j++) {
@@ -14,7 +14,7 @@ function bubble_sort(array &$array) {
 }
 
 
-
+// Array gerado por IA para teste
 $array = [
     523, 87, 649, 312, 955, 208, 764, 431, 675, 120,
     899, 33, 582, 741, 267, 444, 521, 695, 812, 145,
