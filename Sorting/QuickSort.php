@@ -1,6 +1,6 @@
 <?php
 
-function quicksort(array $array): array
+function quicksort(array &$array): void
 {
     $partition = function ($low, $high) use (&$array, &$partition) {
         $pivot = $array[$high];
@@ -11,11 +11,11 @@ function quicksort(array $array): array
                 [$array[$i], $array[$j]] = [$array[$j], $array[$i]];
             }
         }
-        [$array[$i+1], $array[$high]] = [$array[$high], $array[$i+1]];
+        [$array[$i + 1], $array[$high]] = [$array[$high], $array[$i + 1]];
         return $i++;
     };
 
-    $quicksort_recursive = function($low, $high) use (&$array, &$partition, &$quicksort_recursive): void{
+    $quicksort_recursive = function ($low, $high) use (&$array, &$partition, &$quicksort_recursive): void {
         if ($low < $high) {
             $pi = $partition($low, $high);
             $quicksort_recursive($low, $pi - 1);
@@ -24,7 +24,6 @@ function quicksort(array $array): array
     };
 
     $quicksort_recursive(0, count($array) - 1);
-    return $array;
 }
 
 // Array gerado por IA para teste
@@ -43,6 +42,6 @@ $array = [
 
 echo "Array original: ";
 print_r($array);
-$sorted_array = quicksort($array);
+quicksort($array);
 echo "Array ordenado: ";
-print_r($sorted_array);
+print_r($array);
