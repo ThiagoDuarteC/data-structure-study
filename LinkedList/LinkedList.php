@@ -3,8 +3,8 @@
 class LinkedList
 {
     public $val = 0;
-    public $next = null;
-    public function __construct($val = 0, $next = null)
+    public $next;
+    public function __construct($val, $next = null)
     {
         $this->val = $val;
         $this->next = $next;
