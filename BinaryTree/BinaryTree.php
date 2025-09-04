@@ -58,16 +58,65 @@ class BinaryTree
 
         return $this->searchRecursive($node->left, $data);
     }
+
+    public function preorderTraversal(): array{
+        $result = [];
+        $this->preorderTraversalRecursive($this->root, $result);
+        return $result;
+    }
+
+    private function preorderTraversalRecursive($node, &$result){
+        if ($node){
+            $result []= $node->data;
+            $this->preorderTraversalRecursive($node->left, $result);
+            $this->preorderTraversalRecursive($node->right, $result);
+        }
+    }
+
+    public function postorderTraversal(): array{
+        $result = [];
+        $this->postorderTraversalRecursive($this->root, $result);
+        return $result;
+    }
+
+    private function postorderTraversalRecursive($node, &$result){
+        if ($node){
+            $this->postorderTraversalRecursive($node->left, $result);
+            $this->postorderTraversalRecursive($node->right, $result);
+            $result []= $node->data;
+        }
+    }
+
+    public function inorderTraversal(): array{
+        $result = [];
+        $this->inorderTraversalRecursive($this->root, $result);
+        return $result;
+    }
+
+    private function inorderTraversalRecursive($node, &$result){
+        if ($node){
+            $this->inorderTraversalRecursive($node->left, $result);
+            $result []= $node->data;
+            $this->inorderTraversalRecursive($node->right, $result);
+        }
+    }
 }
 
 $tree = new BinaryTree();
-$valuesToInsert = [10, 5, 15, 3, 7, 12, 18];
+$valuesToInsert = [5, 3, 1, 10, 15, 7];
 
 for ($i = 0; $i < count($valuesToInsert); $i++) {
     $tree->insert($valuesToInsert[$i]);
 }
 
-var_dump($tree->search(7));
-var_dump($tree->search(14));
-var_dump($tree->search(10));
-var_dump($tree->search(18));
+// var_dump($tree->search(7));
+// var_dump($tree->search(14));
+// var_dump($tree->search(10));
+// var_dump($tree->search(18));
+
+echo "Preorder Traversal:";
+print_r($tree->preorderTraversal());
+echo "Inorder Traversal:";
+print_r($tree->inorderTraversal());
+echo "Postorder Traversal:";
+print_r($tree->postorderTraversal());
